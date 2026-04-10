@@ -20,32 +20,30 @@ export const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.get(`http://localhost:3000/blog_users?email=${data.email}&password=${data.password}`);
-      const user = response.data[0];
+      const users = JSON.parse(localStorage.getItem('blog_users') || '[]');
+      const user = users.find(u => u.email === data.email && u.password === data.password);
       
       if (user) {
-        localStorage.setItem("loggedInUser", user.name);
-        // We'll need to trigger a re-render or state update in App.jsx. 
-        // For now, redirecting will refresh the state as App.jsx reads from localStorage on mount.
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
         toast.success(`Welcome back, ${user.name}!`);
-        window.location.href = '/'; // Simple way to reset state in App.jsx
+        window.location.href = '/'; 
       } else {
         toast.error("Invalid email or password");
       }
     } catch (error) {
-      toast.error("Authentication failed. Make sure the server is running.");
+      toast.error("Authentication failed.");
     }
   };
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-80px)] p-6">
-      <div className="card w-full max-w-md bg-white border border-neutral/20 shadow-2xl p-10 rounded-[2.5rem]">
+      <div className="card w-full max-w-md bg-base-100 border border-neutral shadow-xl p-10 rounded-[2.5rem]">
         <div className="flex flex-col items-center gap-6">
           <div className="p-4 bg-primary rounded-full shadow-lg shadow-primary/20">
-            <PenLine size={32} className="text-white" />
+            <PenLine size={32} className="text-primary-content" />
           </div>
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
+            <h1 className="text-3xl font-bold text-base-content mb-2">Welcome Back</h1>
             <p className="text-base-content/50">Sign in to your account to continue</p>
           </div>
         </div>
@@ -53,12 +51,12 @@ export const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-6">
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold text-white">Email</span>
+              <span className="label-text font-bold text-base-content/80">Email</span>
             </label>
             <input 
               type="email" 
               placeholder="you@example.com"
-              className={`input input-bordered w-full bg-[#e8e8e8] border-neutral/30 text-black rounded-xl focus:border-primary transition-all ${errors.email ? 'border-error' : ''}`}
+              className={`input input-bordered w-full bg-base-200 border-neutral text-base-content rounded-xl focus:border-primary transition-all ${errors.email ? 'border-error' : ''}`}
               {...register("email")}
             />
             {errors.email && <span className="text-error text-xs mt-1">{errors.email.message}</span>}
@@ -66,12 +64,12 @@ export const Login = () => {
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold text-white">Password</span>
+              <span className="label-text font-bold text-base-content/80">Password</span>
             </label>
             <input 
               type="password" 
               placeholder="Enter your password"
-              className={`input input-bordered w-full bg-[#e8e8e8] border-neutral/30 text-black rounded-xl focus:border-primary transition-all ${errors.password ? 'border-error' : ''}`}
+              className={`input input-bordered w-full bg-base-200 border-neutral text-base-content rounded-xl focus:border-primary transition-all ${errors.password ? 'border-error' : ''}`}
               {...register("password")}
             />
             {errors.password && <span className="text-error text-xs mt-1">{errors.password.message}</span>}

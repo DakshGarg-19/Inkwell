@@ -15,7 +15,7 @@ export const BlogCard = ({
   return (
     <div 
       onClick={() => navigate(`/blog/${id}`)}
-      className="card w-full bg-[var(--color-surface)] border border-neutral rounded-4xl p-8 hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+      className="card w-full bg-base-100 border border-neutral rounded-4xl p-8 hover:border-primary/50 transition-all duration-300 cursor-pointer group"
     >
       <div className="flex flex-wrap gap-2 mb-6">
         {tags.map((tag, index) => (

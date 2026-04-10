@@ -6,11 +6,10 @@
   default: false;
   prefersdark: false;
   color-scheme: "dark";
-  --color-base-100: oklch(14% 0.005 285.823);
-  --color-base-200: oklch(21% 0.006 285.885);
-  --color-base-300: oklch(27% 0.006 286.033);
+  --color-base-100: #0A0E11;
+  --color-base-200: oklch(14% 0.005 285.823);
+  --color-base-300: oklch(21% 0.006 285.885);
   --color-base-content: oklch(96% 0.001 286.375);
-  --color-surface: #0A0E11;
   --color-primary: #008c75;
   --color-primary-content: oklch(98% 0.014 180.72);
   --color-secondary: #0056a4;
@@ -40,16 +39,15 @@
 @plugin "daisyui/theme" {
   name: "inkwell-light";
   color-scheme: "light";
-  --color-base-100: #e8e8e8;
-  --color-base-200: oklch(98% 0 0);
+  --color-base-100: #ffffff;
+  --color-base-200: #e8e8e8;
   --color-base-300: oklch(95% 0 0);
   --color-base-content: #000000;
-  --color-surface: #ffffff;
   
-  --color-primary: #0056a4; /* Secondary from dark theme */
+  --color-primary: #0056a4;
   --color-primary-content: oklch(98% 0 0);
   
-  --color-secondary: #008c75; /* Primary from dark theme */
+  --color-secondary: #008c75;
   --color-secondary-content: oklch(98% 0 0);
   
   --color-accent: #00a63e;
